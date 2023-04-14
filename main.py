@@ -4,8 +4,13 @@ import random
 
 
 def loadR_matrix():
-    with open("rmx.json", "r") as f:
-        R = json.load(f)
+    R = []
+    with open("rmx.txt", "r") as f:
+        n = int(f.readline().strip())
+        R = [[-1 for i in range(n)] for j in range(n)]
+        for line in f.readlines():
+            i,j,w = list(map(lambda x: int(x), line.split(" ")))
+            R[i][j] = w
     return R
 
 
