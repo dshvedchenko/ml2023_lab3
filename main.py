@@ -1,7 +1,4 @@
-import os
-import json
 import random
-
 
 def loadR_matrix():
     R = []
