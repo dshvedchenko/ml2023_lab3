@@ -16,6 +16,7 @@ class Agent:
             n = int(f.readline().strip())
             self.R = [[-1 for i in range(n)] for j in range(n)]
             for line in f.readlines():
+                if line.startswith("#"): continue
                 i, j, w = list(map(lambda x: int(x), line.split(" ")))
                 self.R[i][j] = w
 
@@ -38,6 +39,9 @@ class Agent:
             # get possible move from R[currentPos]
             possMoves = [(ix, i) for ix, i in enumerate(self.R[currentPos]) if i > -1]
             possMoves.sort(key=lambda k: k[1], reverse=True)
+            if len(possMoves) == 0:
+                print(f"No way out of {currentPos}")
+                return
             betterMoveWeight = possMoves[0][1]
             possMoves = list(filter(lambda k: k[1] == betterMoveWeight, possMoves))
             # determine random required
